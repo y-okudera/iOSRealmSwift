@@ -42,27 +42,29 @@ final class MultiThreadAccessTests: XCTestCase {
         DispatchQueue.global().async {
             // サブスレッド
 
-            let service = RealmInitializerForTest.realmInitializeService()
-            let dao = RealmDaoHelper<FolderEntity>(service: service)
-            
-            // オブジェクトへの参照を取得する
-            guard let object = dao.realm.resolve(folderRef) else {
-                XCTFail("The object has already been deleted.")
-                return
+            autoreleasepool {
+                let service = RealmInitializerForTest.realmInitializeService()
+                let dao = RealmDaoHelper<FolderEntity>(service: service)
+
+                // オブジェクトへの参照を取得する
+                guard let object = dao.realm.resolve(folderRef) else {
+                    XCTFail("The object has already been deleted.")
+                    return
+                }
+
+                // Update
+                let updateResult = dao.update(d: object, block: {
+                    object.title = "サブスレッドテスト"
+                })
+
+                XCTAssertTrue(updateResult)
+
+                // レコードを取得
+                guard let updatedFolder = dao.findById(id: 1 as AnyObject) else {
+                    return
+                }
+                XCTAssertEqual(updatedFolder.title, "サブスレッドテスト")
             }
-
-            // Update
-            let updateResult = dao.update(d: object, block: {
-                object.title = "サブスレッドテスト"
-            })
-
-            XCTAssertTrue(updateResult)
-
-            // レコードを取得
-            guard let updatedFolder = dao.findById(id: 1 as AnyObject) else {
-                return
-            }
-            XCTAssertEqual(updatedFolder.title, "サブスレッドテスト")
         }
     }
 }
