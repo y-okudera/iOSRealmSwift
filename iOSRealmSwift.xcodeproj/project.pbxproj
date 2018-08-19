@@ -11,6 +11,11 @@
 		B6163E07212925510043D6AB /* RealmInitializerForTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E06212925510043D6AB /* RealmInitializerForTest.swift */; };
 		B6163E0B21292DC80043D6AB /* String+ToDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E0A21292DC80043D6AB /* String+ToDate.swift */; };
 		B6163E0F2129467D0043D6AB /* TaskDaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E0E2129467D0043D6AB /* TaskDaoTests.swift */; };
+		B6163E15212960750043D6AB /* BreederEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E14212960750043D6AB /* BreederEntity.swift */; };
+		B6163E17212960B20043D6AB /* PetEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E16212960B20043D6AB /* PetEntity.swift */; };
+		B6163E1E212961510043D6AB /* BreederDecodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E1D212961510043D6AB /* BreederDecodableTests.swift */; };
+		B6163E20212962840043D6AB /* BreederEncodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E1F212962840043D6AB /* BreederEncodableTests.swift */; };
+		B6163E2121296BE00043D6AB /* List+ConformToCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E122129605D0043D6AB /* List+ConformToCodable.swift */; };
 		B684A58C212715C3009B94A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A58B212715C3009B94A2 /* AppDelegate.swift */; };
 		B684A58E212715C3009B94A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A58D212715C3009B94A2 /* ViewController.swift */; };
 		B684A591212715C3009B94A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B684A58F212715C3009B94A2 /* Main.storyboard */; };
@@ -46,6 +51,11 @@
 		B6163E06212925510043D6AB /* RealmInitializerForTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmInitializerForTest.swift; sourceTree = "<group>"; };
 		B6163E0A21292DC80043D6AB /* String+ToDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ToDate.swift"; sourceTree = "<group>"; };
 		B6163E0E2129467D0043D6AB /* TaskDaoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDaoTests.swift; sourceTree = "<group>"; };
+		B6163E122129605D0043D6AB /* List+ConformToCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+ConformToCodable.swift"; sourceTree = "<group>"; };
+		B6163E14212960750043D6AB /* BreederEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreederEntity.swift; sourceTree = "<group>"; };
+		B6163E16212960B20043D6AB /* PetEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetEntity.swift; sourceTree = "<group>"; };
+		B6163E1D212961510043D6AB /* BreederDecodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreederDecodableTests.swift; sourceTree = "<group>"; };
+		B6163E1F212962840043D6AB /* BreederEncodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreederEncodableTests.swift; sourceTree = "<group>"; };
 		B684A588212715C3009B94A2 /* iOSRealmSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSRealmSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B684A58B212715C3009B94A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B684A58D212715C3009B94A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +125,31 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
+		B6163E10212960410043D6AB /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B6163E112129604F0043D6AB /* OSS */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		B6163E112129604F0043D6AB /* OSS */ = {
+			isa = PBXGroup;
+			children = (
+				B6163E122129605D0043D6AB /* List+ConformToCodable.swift */,
+			);
+			path = OSS;
+			sourceTree = "<group>";
+		};
+		B6163E1C2129612F0043D6AB /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				B6163E1D212961510043D6AB /* BreederDecodableTests.swift */,
+				B6163E1F212962840043D6AB /* BreederEncodableTests.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		B684A57F212715C3009B94A2 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +172,7 @@
 		B684A58A212715C3009B94A2 /* iOSRealmSwift */ = {
 			isa = PBXGroup;
 			children = (
+				B6163E10212960410043D6AB /* Extension */,
 				B684A5B92127164F009B94A2 /* Data */,
 				B684A58B212715C3009B94A2 /* AppDelegate.swift */,
 				B684A58D212715C3009B94A2 /* ViewController.swift */,
@@ -174,6 +210,8 @@
 			children = (
 				B684A5C421271970009B94A2 /* TaskEntity.swift */,
 				B684A5E3212866DA009B94A2 /* FolderEntity.swift */,
+				B6163E14212960750043D6AB /* BreederEntity.swift */,
+				B6163E16212960B20043D6AB /* PetEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -220,6 +258,7 @@
 			children = (
 				B684A5E82128978B009B94A2 /* Utility */,
 				B6163E03212924A60043D6AB /* Dao */,
+				B6163E1C2129612F0043D6AB /* Entity */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -359,7 +398,10 @@
 				B684A5CC212727A3009B94A2 /* RealmInitializeService.swift in Sources */,
 				B684A5E4212866DA009B94A2 /* FolderEntity.swift in Sources */,
 				B684A58E212715C3009B94A2 /* ViewController.swift in Sources */,
+				B6163E2121296BE00043D6AB /* List+ConformToCodable.swift in Sources */,
+				B6163E17212960B20043D6AB /* PetEntity.swift in Sources */,
 				B684A5D221272BE3009B94A2 /* RealmInitializer.swift in Sources */,
+				B6163E15212960750043D6AB /* BreederEntity.swift in Sources */,
 				B684A5E621286769009B94A2 /* FolderDao.swift in Sources */,
 				B684A58C212715C3009B94A2 /* AppDelegate.swift in Sources */,
 			);
@@ -374,6 +416,8 @@
 				B684A5EA21289798009B94A2 /* RealmDaoHelperTests.swift in Sources */,
 				B684A5E02127AC1D009B94A2 /* UTFileManager.swift in Sources */,
 				B6163E05212924BF0043D6AB /* FolderDaoTests.swift in Sources */,
+				B6163E20212962840043D6AB /* BreederEncodableTests.swift in Sources */,
+				B6163E1E212961510043D6AB /* BreederDecodableTests.swift in Sources */,
 				B6163E0F2129467D0043D6AB /* TaskDaoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
