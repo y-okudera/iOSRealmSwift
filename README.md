@@ -106,3 +106,46 @@ extension List: Encodable where Element: Encodable {
     }
 }
 ```
+
+## スレッド間でオブジェクトを受け渡す
+ThreadSafeReferenceを使用して、オブジェクトをスレッド間で受け渡す。
+
+```
+// メインスレッド
+
+let dao = RealmDaoHelper<FolderEntity>()
+
+// レコードを追加
+dao.add(d: FolderEntity(title: "メインスレッド", lastUpdated: Date()))
+
+// レコードを取得
+guard let theFolder = dao.findById(id: 1 as AnyObject) else {
+    return
+}
+
+// サブスレッドに受け渡す
+let folderRef = ThreadSafeReference(to: theFolder)
+
+DispatchQueue.global().async {
+    // サブスレッド
+
+    let dao = RealmDaoHelper<FolderEntity>()
+
+    // オブジェクトへの参照を取得する
+    guard let object = dao.realm.resolve(folderRef) else {
+        print("対象のObjectが既に削除済み")
+        return
+    }
+
+    // レコードを更新
+    let updateResult = dao.update(d: object, block: {
+        object.title = "サブスレッド"
+    })
+
+    if updateResult {
+        print("更新成功")
+    } else {
+        print("更新失敗")
+    }
+}
+```
