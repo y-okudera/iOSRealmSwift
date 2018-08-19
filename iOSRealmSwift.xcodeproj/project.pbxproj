@@ -7,17 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6163E05212924BF0043D6AB /* FolderDaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E04212924BF0043D6AB /* FolderDaoTests.swift */; };
+		B6163E07212925510043D6AB /* RealmInitializerForTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E06212925510043D6AB /* RealmInitializerForTest.swift */; };
+		B6163E0B21292DC80043D6AB /* String+ToDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E0A21292DC80043D6AB /* String+ToDate.swift */; };
+		B6163E0F2129467D0043D6AB /* TaskDaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E0E2129467D0043D6AB /* TaskDaoTests.swift */; };
 		B684A58C212715C3009B94A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A58B212715C3009B94A2 /* AppDelegate.swift */; };
 		B684A58E212715C3009B94A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A58D212715C3009B94A2 /* ViewController.swift */; };
 		B684A591212715C3009B94A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B684A58F212715C3009B94A2 /* Main.storyboard */; };
 		B684A593212715C6009B94A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B684A592212715C6009B94A2 /* Assets.xcassets */; };
 		B684A596212715C6009B94A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B684A594212715C6009B94A2 /* LaunchScreen.storyboard */; };
-		B684A5A1212715C6009B94A2 /* iOSRealmSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A5A0212715C6009B94A2 /* iOSRealmSwiftTests.swift */; };
-		B684A5AC212715C6009B94A2 /* iOSRealmSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A5AB212715C6009B94A2 /* iOSRealmSwiftUITests.swift */; };
 		B684A5BF212717D7009B94A2 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B684A5BD212717D7009B94A2 /* Realm.framework */; };
 		B684A5C0212717D7009B94A2 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B684A5BE212717D7009B94A2 /* RealmSwift.framework */; };
 		B684A5C221271836009B94A2 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B684A5BD212717D7009B94A2 /* Realm.framework */; };
 		B684A5C321271836009B94A2 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B684A5BE212717D7009B94A2 /* RealmSwift.framework */; };
+		B684A5C521271970009B94A2 /* TaskEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A5C421271970009B94A2 /* TaskEntity.swift */; };
+		B684A5C72127201D009B94A2 /* RealmDaoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A5C62127201D009B94A2 /* RealmDaoHelper.swift */; };
+		B684A5CC212727A3009B94A2 /* RealmInitializeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A5CB212727A3009B94A2 /* RealmInitializeService.swift */; };
+		B684A5D221272BE3009B94A2 /* RealmInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A5D121272BE3009B94A2 /* RealmInitializer.swift */; };
+		B684A5D521272D96009B94A2 /* TaskDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A5D421272D96009B94A2 /* TaskDao.swift */; };
+		B684A5E02127AC1D009B94A2 /* UTFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A5CE212728AB009B94A2 /* UTFileManager.swift */; };
+		B684A5E4212866DA009B94A2 /* FolderEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A5E3212866DA009B94A2 /* FolderEntity.swift */; };
+		B684A5E621286769009B94A2 /* FolderDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A5E521286769009B94A2 /* FolderDao.swift */; };
+		B684A5EA21289798009B94A2 /* RealmDaoHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A5E921289798009B94A2 /* RealmDaoHelperTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,16 +39,13 @@
 			remoteGlobalIDString = B684A587212715C3009B94A2;
 			remoteInfo = iOSRealmSwift;
 		};
-		B684A5A8212715C6009B94A2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B684A580212715C3009B94A2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B684A587212715C3009B94A2;
-			remoteInfo = iOSRealmSwift;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B6163E04212924BF0043D6AB /* FolderDaoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDaoTests.swift; sourceTree = "<group>"; };
+		B6163E06212925510043D6AB /* RealmInitializerForTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmInitializerForTest.swift; sourceTree = "<group>"; };
+		B6163E0A21292DC80043D6AB /* String+ToDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ToDate.swift"; sourceTree = "<group>"; };
+		B6163E0E2129467D0043D6AB /* TaskDaoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDaoTests.swift; sourceTree = "<group>"; };
 		B684A588212715C3009B94A2 /* iOSRealmSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSRealmSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B684A58B212715C3009B94A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B684A58D212715C3009B94A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,13 +54,18 @@
 		B684A595212715C6009B94A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B684A597212715C6009B94A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B684A59C212715C6009B94A2 /* iOSRealmSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSRealmSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B684A5A0212715C6009B94A2 /* iOSRealmSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRealmSwiftTests.swift; sourceTree = "<group>"; };
 		B684A5A2212715C6009B94A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B684A5A7212715C6009B94A2 /* iOSRealmSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSRealmSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B684A5AB212715C6009B94A2 /* iOSRealmSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRealmSwiftUITests.swift; sourceTree = "<group>"; };
-		B684A5AD212715C6009B94A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B684A5BD212717D7009B94A2 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		B684A5BE212717D7009B94A2 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		B684A5C421271970009B94A2 /* TaskEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEntity.swift; sourceTree = "<group>"; };
+		B684A5C62127201D009B94A2 /* RealmDaoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDaoHelper.swift; sourceTree = "<group>"; };
+		B684A5CB212727A3009B94A2 /* RealmInitializeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmInitializeService.swift; sourceTree = "<group>"; };
+		B684A5CE212728AB009B94A2 /* UTFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTFileManager.swift; sourceTree = "<group>"; };
+		B684A5D121272BE3009B94A2 /* RealmInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmInitializer.swift; sourceTree = "<group>"; };
+		B684A5D421272D96009B94A2 /* TaskDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDao.swift; sourceTree = "<group>"; };
+		B684A5E3212866DA009B94A2 /* FolderEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEntity.swift; sourceTree = "<group>"; };
+		B684A5E521286769009B94A2 /* FolderDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDao.swift; sourceTree = "<group>"; };
+		B684A5E921289798009B94A2 /* RealmDaoHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDaoHelperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,22 +87,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B684A5A4212715C6009B94A2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B6163E03212924A60043D6AB /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				B6163E04212924BF0043D6AB /* FolderDaoTests.swift */,
+				B6163E0E2129467D0043D6AB /* TaskDaoTests.swift */,
+			);
+			path = Dao;
+			sourceTree = "<group>";
+		};
+		B6163E0821292DA80043D6AB /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B6163E0921292DB50043D6AB /* Foundation */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		B6163E0921292DB50043D6AB /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				B6163E0A21292DC80043D6AB /* String+ToDate.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
 		B684A57F212715C3009B94A2 = {
 			isa = PBXGroup;
 			children = (
 				B684A58A212715C3009B94A2 /* iOSRealmSwift */,
 				B684A59F212715C6009B94A2 /* iOSRealmSwiftTests */,
-				B684A5AA212715C6009B94A2 /* iOSRealmSwiftUITests */,
 				B684A589212715C3009B94A2 /* Products */,
 				B684A5BC212717D7009B94A2 /* Frameworks */,
 			);
@@ -100,7 +130,6 @@
 			children = (
 				B684A588212715C3009B94A2 /* iOSRealmSwift.app */,
 				B684A59C212715C6009B94A2 /* iOSRealmSwiftTests.xctest */,
-				B684A5A7212715C6009B94A2 /* iOSRealmSwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,25 +151,19 @@
 		B684A59F212715C6009B94A2 /* iOSRealmSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				B684A5A0212715C6009B94A2 /* iOSRealmSwiftTests.swift */,
+				B6163E0821292DA80043D6AB /* Extension */,
+				B684A5C821272516009B94A2 /* Common */,
+				B684A5E721289783009B94A2 /* Data */,
 				B684A5A2212715C6009B94A2 /* Info.plist */,
 			);
 			path = iOSRealmSwiftTests;
-			sourceTree = "<group>";
-		};
-		B684A5AA212715C6009B94A2 /* iOSRealmSwiftUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B684A5AB212715C6009B94A2 /* iOSRealmSwiftUITests.swift */,
-				B684A5AD212715C6009B94A2 /* Info.plist */,
-			);
-			path = iOSRealmSwiftUITests;
 			sourceTree = "<group>";
 		};
 		B684A5B92127164F009B94A2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				B684A5BB2127165E009B94A2 /* Utility */,
+				B684A5D321272D0D009B94A2 /* Dao */,
 				B684A5BA21271658009B94A2 /* Entity */,
 			);
 			path = Data;
@@ -149,6 +172,8 @@
 		B684A5BA21271658009B94A2 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				B684A5C421271970009B94A2 /* TaskEntity.swift */,
+				B684A5E3212866DA009B94A2 /* FolderEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -156,6 +181,9 @@
 		B684A5BB2127165E009B94A2 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				B684A5CB212727A3009B94A2 /* RealmInitializeService.swift */,
+				B684A5D121272BE3009B94A2 /* RealmInitializer.swift */,
+				B684A5C62127201D009B94A2 /* RealmDaoHelper.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -167,6 +195,41 @@
 				B684A5BE212717D7009B94A2 /* RealmSwift.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B684A5C821272516009B94A2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B684A5CE212728AB009B94A2 /* UTFileManager.swift */,
+				B6163E06212925510043D6AB /* RealmInitializerForTest.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B684A5D321272D0D009B94A2 /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				B684A5D421272D96009B94A2 /* TaskDao.swift */,
+				B684A5E521286769009B94A2 /* FolderDao.swift */,
+			);
+			path = Dao;
+			sourceTree = "<group>";
+		};
+		B684A5E721289783009B94A2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B684A5E82128978B009B94A2 /* Utility */,
+				B6163E03212924A60043D6AB /* Dao */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B684A5E82128978B009B94A2 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				B684A5E921289798009B94A2 /* RealmDaoHelperTests.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,24 +271,6 @@
 			productReference = B684A59C212715C6009B94A2 /* iOSRealmSwiftTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B684A5A6212715C6009B94A2 /* iOSRealmSwiftUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B684A5B6212715C6009B94A2 /* Build configuration list for PBXNativeTarget "iOSRealmSwiftUITests" */;
-			buildPhases = (
-				B684A5A3212715C6009B94A2 /* Sources */,
-				B684A5A4212715C6009B94A2 /* Frameworks */,
-				B684A5A5212715C6009B94A2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B684A5A9212715C6009B94A2 /* PBXTargetDependency */,
-			);
-			name = iOSRealmSwiftUITests;
-			productName = iOSRealmSwiftUITests;
-			productReference = B684A5A7212715C6009B94A2 /* iOSRealmSwiftUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -240,10 +285,6 @@
 						CreatedOnToolsVersion = 9.4.1;
 					};
 					B684A59B212715C6009B94A2 = {
-						CreatedOnToolsVersion = 9.4.1;
-						TestTargetID = B684A587212715C3009B94A2;
-					};
-					B684A5A6212715C6009B94A2 = {
 						CreatedOnToolsVersion = 9.4.1;
 						TestTargetID = B684A587212715C3009B94A2;
 					};
@@ -264,7 +305,6 @@
 			targets = (
 				B684A587212715C3009B94A2 /* iOSRealmSwift */,
 				B684A59B212715C6009B94A2 /* iOSRealmSwiftTests */,
-				B684A5A6212715C6009B94A2 /* iOSRealmSwiftUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -281,13 +321,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B684A59A212715C6009B94A2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B684A5A5212715C6009B94A2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -320,7 +353,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B684A5C72127201D009B94A2 /* RealmDaoHelper.swift in Sources */,
+				B684A5C521271970009B94A2 /* TaskEntity.swift in Sources */,
+				B684A5D521272D96009B94A2 /* TaskDao.swift in Sources */,
+				B684A5CC212727A3009B94A2 /* RealmInitializeService.swift in Sources */,
+				B684A5E4212866DA009B94A2 /* FolderEntity.swift in Sources */,
 				B684A58E212715C3009B94A2 /* ViewController.swift in Sources */,
+				B684A5D221272BE3009B94A2 /* RealmInitializer.swift in Sources */,
+				B684A5E621286769009B94A2 /* FolderDao.swift in Sources */,
 				B684A58C212715C3009B94A2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,15 +369,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B684A5A1212715C6009B94A2 /* iOSRealmSwiftTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B684A5A3212715C6009B94A2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B684A5AC212715C6009B94A2 /* iOSRealmSwiftUITests.swift in Sources */,
+				B6163E07212925510043D6AB /* RealmInitializerForTest.swift in Sources */,
+				B6163E0B21292DC80043D6AB /* String+ToDate.swift in Sources */,
+				B684A5EA21289798009B94A2 /* RealmDaoHelperTests.swift in Sources */,
+				B684A5E02127AC1D009B94A2 /* UTFileManager.swift in Sources */,
+				B6163E05212924BF0043D6AB /* FolderDaoTests.swift in Sources */,
+				B6163E0F2129467D0043D6AB /* TaskDaoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,11 +385,6 @@
 			isa = PBXTargetDependency;
 			target = B684A587212715C3009B94A2 /* iOSRealmSwift */;
 			targetProxy = B684A59D212715C6009B94A2 /* PBXContainerItemProxy */;
-		};
-		B684A5A9212715C6009B94A2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B684A587212715C3009B94A2 /* iOSRealmSwift */;
-			targetProxy = B684A5A8212715C6009B94A2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -586,46 +618,6 @@
 			};
 			name = Release;
 		};
-		B684A5B7212715C6009B94A2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B8PR34D6DP;
-				INFOPLIST_FILE = iOSRealmSwiftUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = jp.yuoku.iOSRealmSwiftUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = iOSRealmSwift;
-			};
-			name = Debug;
-		};
-		B684A5B8212715C6009B94A2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B8PR34D6DP;
-				INFOPLIST_FILE = iOSRealmSwiftUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = jp.yuoku.iOSRealmSwiftUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = iOSRealmSwift;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -652,15 +644,6 @@
 			buildConfigurations = (
 				B684A5B4212715C6009B94A2 /* Debug */,
 				B684A5B5212715C6009B94A2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B684A5B6212715C6009B94A2 /* Build configuration list for PBXNativeTarget "iOSRealmSwiftUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B684A5B7212715C6009B94A2 /* Debug */,
-				B684A5B8212715C6009B94A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
