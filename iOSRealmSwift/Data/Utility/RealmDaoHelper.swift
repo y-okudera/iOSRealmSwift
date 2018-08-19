@@ -44,9 +44,10 @@ final class RealmDaoHelper <T: RealmSwift.Object> {
     // MARK: - Update record
 
     /// T: RealmSwift.Object で primaryKey()が実装されている時のみ有効
-    func update(d: T) -> Bool {
+    func update(d: T, block:(() -> Void)? = nil) -> Bool {
         do {
             try realm.write {
+                block?()
                 realm.add(d, update: true)
             }
             return true

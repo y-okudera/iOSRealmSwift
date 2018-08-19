@@ -16,6 +16,7 @@
 		B6163E1E212961510043D6AB /* BreederDecodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E1D212961510043D6AB /* BreederDecodableTests.swift */; };
 		B6163E20212962840043D6AB /* BreederEncodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E1F212962840043D6AB /* BreederEncodableTests.swift */; };
 		B6163E2121296BE00043D6AB /* List+ConformToCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E122129605D0043D6AB /* List+ConformToCodable.swift */; };
+		B6163E232129A8F30043D6AB /* MultiThreadAccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E222129A8F30043D6AB /* MultiThreadAccessTests.swift */; };
 		B684A58C212715C3009B94A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A58B212715C3009B94A2 /* AppDelegate.swift */; };
 		B684A58E212715C3009B94A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B684A58D212715C3009B94A2 /* ViewController.swift */; };
 		B684A591212715C3009B94A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B684A58F212715C3009B94A2 /* Main.storyboard */; };
@@ -56,6 +57,7 @@
 		B6163E16212960B20043D6AB /* PetEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetEntity.swift; sourceTree = "<group>"; };
 		B6163E1D212961510043D6AB /* BreederDecodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreederDecodableTests.swift; sourceTree = "<group>"; };
 		B6163E1F212962840043D6AB /* BreederEncodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreederEncodableTests.swift; sourceTree = "<group>"; };
+		B6163E222129A8F30043D6AB /* MultiThreadAccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiThreadAccessTests.swift; sourceTree = "<group>"; };
 		B684A588212715C3009B94A2 /* iOSRealmSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSRealmSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B684A58B212715C3009B94A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B684A58D212715C3009B94A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				B6163E04212924BF0043D6AB /* FolderDaoTests.swift */,
 				B6163E0E2129467D0043D6AB /* TaskDaoTests.swift */,
+				B6163E222129A8F30043D6AB /* MultiThreadAccessTests.swift */,
 			);
 			path = Dao;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				B684A5EA21289798009B94A2 /* RealmDaoHelperTests.swift in Sources */,
 				B684A5E02127AC1D009B94A2 /* UTFileManager.swift in Sources */,
 				B6163E05212924BF0043D6AB /* FolderDaoTests.swift in Sources */,
+				B6163E232129A8F30043D6AB /* MultiThreadAccessTests.swift in Sources */,
 				B6163E20212962840043D6AB /* BreederEncodableTests.swift in Sources */,
 				B6163E1E212961510043D6AB /* BreederDecodableTests.swift in Sources */,
 				B6163E0F2129467D0043D6AB /* TaskDaoTests.swift in Sources */,
