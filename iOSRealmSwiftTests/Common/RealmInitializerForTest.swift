@@ -11,8 +11,8 @@ import RealmSwift
 @testable import iOSRealmSwift
 
 final class RealmInitializerForTest: NSObject {
-    static func realmInitializeService() -> RealmInitializer {
-        let fileURL = URL(fileURLWithPath: UTFileManager.getUTRealmPath())
+    static func realmInitializeService(filePath: String = UTFileManager.getUTRealmPath()) -> RealmInitializer {
+        let fileURL = URL(fileURLWithPath: filePath)
         let configuration: Realm.Configuration? = Realm.Configuration(fileURL: fileURL)
         return RealmInitializer(configuration: configuration)
     }

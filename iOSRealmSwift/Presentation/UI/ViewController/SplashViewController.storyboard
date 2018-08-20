@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gdp-Ez-YoX">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="Xck-2E-11h">
+            <objects>
+                <viewController storyboardIdentifier="SplashViewController" id="gdp-Ez-YoX" customClass="SplashViewController" customModule="iOSRealmSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1sb-w6-AiX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOSRealmSwift" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7V-Mr-z6j">
+                                <rect key="frame" x="0.0" y="323.5" width="375" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2018年 YukiOkudera. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1k-BS-ceS">
+                                <rect key="frame" x="0.0" y="364.5" width="375" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="o7V-Mr-z6j" firstAttribute="trailing" secondItem="7a7-ya-o7r" secondAttribute="trailing" id="GOb-9Q-Ufy"/>
+                            <constraint firstItem="e1k-BS-ceS" firstAttribute="top" secondItem="o7V-Mr-z6j" secondAttribute="bottom" constant="20" id="cVe-lp-5cX"/>
+                            <constraint firstItem="o7V-Mr-z6j" firstAttribute="centerX" secondItem="1sb-w6-AiX" secondAttribute="centerX" id="f1T-Y1-gbb"/>
+                            <constraint firstItem="o7V-Mr-z6j" firstAttribute="leading" secondItem="7a7-ya-o7r" secondAttribute="leading" id="owS-Di-yXM"/>
+                            <constraint firstItem="o7V-Mr-z6j" firstAttribute="centerY" secondItem="1sb-w6-AiX" secondAttribute="centerY" id="pyv-1M-OOD"/>
+                            <constraint firstItem="e1k-BS-ceS" firstAttribute="trailing" secondItem="7a7-ya-o7r" secondAttribute="trailing" id="sUl-Fj-hFs"/>
+                            <constraint firstItem="e1k-BS-ceS" firstAttribute="leading" secondItem="7a7-ya-o7r" secondAttribute="leading" id="vUX-PG-2aG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7a7-ya-o7r"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3iO-g8-Ywx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="161" y="433"/>
+        </scene>
+    </scenes>
+</document>
