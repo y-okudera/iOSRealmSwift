@@ -4,8 +4,8 @@ RealmSwiftのサンプル
 ## 開発環境
 |Category|Version|
 |:-----:|:-----:|
-|Xcode|9.4.1(9F2000)|
-|Carthage|0.30.1|
+|Xcode|10.2.1 (10E1001)|
+|Carthage|0.32.0|
 
 ## データモデル
 
@@ -178,34 +178,6 @@ final class RealmMigrator {
             } catch {
                 print(error)
             }
-        }
-    }
-}
-```
-
-## RealmのListクラスをCodableに準拠させる
-
-List+ConformToCodable.swift
-```
-import Foundation
-import RealmSwift
-
-extension List: Decodable where Element: Decodable {
-    public convenience init(from decoder: Decoder) throws {
-        self.init()
-        var container = try decoder.unkeyedContainer()
-        while !container.isAtEnd {
-            let element = try container.decode(Element.self)
-            self.append(element)
-        }
-    }
-}
-
-extension List: Encodable where Element: Encodable {
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.unkeyedContainer()
-        for element in self {
-            try element.encode(to: container.superEncoder())
         }
     }
 }
