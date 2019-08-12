@@ -12,9 +12,12 @@ import RealmSwift
 final class FolderDao {
 
     private let dao: RealmDaoHelper<FolderEntity>
+    private let taskDao: TaskDao
 
-    init(dao: RealmDaoHelper<FolderEntity> = RealmDaoHelper<FolderEntity>()) {
-        self.dao = dao
+    init(daoHelper: RealmDaoHelper<FolderEntity> = RealmDaoHelper<FolderEntity>(),
+         taskDaoHelper: RealmDaoHelper<TaskEntity> = RealmDaoHelper<TaskEntity>()) {
+        self.dao = daoHelper
+        self.taskDao = TaskDao(dao: taskDaoHelper)
     }
 
     // MARK: - Add
@@ -75,8 +78,6 @@ final class FolderDao {
         guard let folder = findById(folderId: folderId) else {
             return
         }
-
-        let taskDao = TaskDao()
         folder.taskList.forEach {
             taskDao.delete(taskId: $0.taskId)
         }

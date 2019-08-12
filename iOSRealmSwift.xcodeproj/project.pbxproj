@@ -15,7 +15,6 @@
 		B6163E17212960B20043D6AB /* PetEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E16212960B20043D6AB /* PetEntity.swift */; };
 		B6163E1E212961510043D6AB /* BreederDecodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E1D212961510043D6AB /* BreederDecodableTests.swift */; };
 		B6163E20212962840043D6AB /* BreederEncodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E1F212962840043D6AB /* BreederEncodableTests.swift */; };
-		B6163E2121296BE00043D6AB /* List+ConformToCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E122129605D0043D6AB /* List+ConformToCodable.swift */; };
 		B6163E232129A8F30043D6AB /* MultiThreadAccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E222129A8F30043D6AB /* MultiThreadAccessTests.swift */; };
 		B6163E282129BA7E0043D6AB /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6163E272129BA7E0043D6AB /* SplashViewController.swift */; };
 		B6163E2A2129BA840043D6AB /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6163E292129BA840043D6AB /* SplashViewController.storyboard */; };
@@ -57,7 +56,6 @@
 		B6163E06212925510043D6AB /* RealmInitializerForTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmInitializerForTest.swift; sourceTree = "<group>"; };
 		B6163E0A21292DC80043D6AB /* String+ToDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ToDate.swift"; sourceTree = "<group>"; };
 		B6163E0E2129467D0043D6AB /* TaskDaoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDaoTests.swift; sourceTree = "<group>"; };
-		B6163E122129605D0043D6AB /* List+ConformToCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+ConformToCodable.swift"; sourceTree = "<group>"; };
 		B6163E14212960750043D6AB /* BreederEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreederEntity.swift; sourceTree = "<group>"; };
 		B6163E16212960B20043D6AB /* PetEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetEntity.swift; sourceTree = "<group>"; };
 		B6163E1D212961510043D6AB /* BreederDecodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreederDecodableTests.swift; sourceTree = "<group>"; };
@@ -142,17 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				B6163E2D2129C6980043D6AB /* UIKit */,
-				B6163E112129604F0043D6AB /* OSS */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		B6163E112129604F0043D6AB /* OSS */ = {
-			isa = PBXGroup;
-			children = (
-				B6163E122129605D0043D6AB /* List+ConformToCodable.swift */,
-			);
-			path = OSS;
 			sourceTree = "<group>";
 		};
 		B6163E1C2129612F0043D6AB /* Entity */ = {
@@ -372,9 +361,11 @@
 				TargetAttributes = {
 					B684A587212715C3009B94A2 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 					};
 					B684A59B212715C6009B94A2 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = B684A587212715C3009B94A2;
 					};
 				};
@@ -452,7 +443,6 @@
 				B684A58E212715C3009B94A2 /* ViewController.swift in Sources */,
 				B6163E282129BA7E0043D6AB /* SplashViewController.swift in Sources */,
 				B6163E2F2129C6A40043D6AB /* UIStoryboard+Instance.swift in Sources */,
-				B6163E2121296BE00043D6AB /* List+ConformToCodable.swift in Sources */,
 				B6163E17212960B20043D6AB /* PetEntity.swift in Sources */,
 				B684A5D221272BE3009B94A2 /* RealmInitializer.swift in Sources */,
 				B6163E15212960750043D6AB /* BreederEntity.swift in Sources */,
@@ -640,7 +630,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.yuoku.iOSRealmSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -663,7 +653,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.yuoku.iOSRealmSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -687,7 +677,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.yuoku.iOSRealmSwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSRealmSwift.app/iOSRealmSwift";
 			};
@@ -712,7 +702,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.yuoku.iOSRealmSwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSRealmSwift.app/iOSRealmSwift";
 			};

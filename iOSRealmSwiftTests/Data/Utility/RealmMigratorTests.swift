@@ -103,7 +103,7 @@ final class RealmMigratorTests: XCTestCase {
                 realm.add(folder2)
                 if let theFolder = realm.object(ofType: FolderEntity.self, forPrimaryKey: 1 as AnyObject) {
                     theFolder.taskList.append(task1)
-                    realm.add(theFolder, update: true)
+                    realm.add(theFolder)
                 }
             }
         } catch {

@@ -19,6 +19,7 @@
 import Foundation
 import Realm
 import Realm.Dynamic
+import RealmTestSupport
 import RealmSwift
 import XCTest
 
@@ -26,7 +27,7 @@ func inMemoryRealm(_ inMememoryIdentifier: String) -> Realm {
     return try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: inMememoryIdentifier))
 }
 
-class TestCase: XCTestCase {
+class TestCase: RLMTestCaseBase {
     var exceptionThrown = false
     var testDir: String! = nil
 
@@ -37,22 +38,6 @@ class TestCase: XCTestCase {
         var configuration = configuration
         configuration.fileURL = testRealmURL()
         return try! Realm(configuration: configuration)
-    }
-
-    override class func setUp() {
-        super.setUp()
-#if DEBUG || arch(i386) || arch(x86_64)
-        // Disable actually syncing anything to the disk to greatly speed up the
-        // tests, but only when not running on device because it can't be
-        // re-enabled and we need it enabled for performance tests
-        RLMDisableSyncToDisk()
-#endif
-        do {
-            // Clean up any potentially lingering Realm files from previous runs
-            try FileManager.default.removeItem(atPath: RLMRealmPathForFile(""))
-        } catch {
-            // The directory might not actually already exist, so not an error
-        }
     }
 
     override class func tearDown() {
@@ -97,10 +82,6 @@ class TestCase: XCTestCase {
             XCTAssertNotEqual(url.pathExtension, "realm", "Lingering realm file at \(parentDir)/\(url)")
             assert(url.pathExtension != "realm")
         }
-    }
-
-    func resetRealmState() {
-        RLMRealm.resetRealmState()
     }
 
     func dispatchSyncNewThread(block: @escaping () -> Void) {
@@ -149,20 +130,19 @@ class TestCase: XCTestCase {
         }
     }
 
-    func assertThrows<T>(_ block: @escaping @autoclosure () -> T,
-                         named: String? = RLMExceptionName,
+    func assertThrows<T>(_ block: @autoclosure () -> T, named: String? = RLMExceptionName,
                          _ message: String? = nil, fileName: String = #file, lineNumber: UInt = #line) {
         exceptionThrown = true
         RLMAssertThrowsWithName(self, { _ = block() }, named, message, fileName, lineNumber)
     }
 
-    func assertThrows<T>(_ block: @escaping @autoclosure () -> T, reason: String,
+    func assertThrows<T>(_ block: @autoclosure () -> T, reason: String,
                          _ message: String? = nil, fileName: String = #file, lineNumber: UInt = #line) {
         exceptionThrown = true
         RLMAssertThrowsWithReason(self, { _ = block() }, reason, message, fileName, lineNumber)
     }
 
-    func assertThrows<T>(_ block: @escaping @autoclosure () -> T, reasonMatching regexString: String,
+    func assertThrows<T>(_ block: @autoclosure () -> T, reasonMatching regexString: String,
                          _ message: String? = nil, fileName: String = #file, lineNumber: UInt = #line) {
         exceptionThrown = true
         RLMAssertThrowsWithReasonMatching(self, { _ = block() }, regexString, message, fileName, lineNumber)
@@ -213,8 +193,7 @@ class TestCase: XCTestCase {
         XCTAssert(block() == nil, message ?? "", file: fileName, line: lineNumber)
     }
 
-    func assertMatches(_ block: @escaping @autoclosure () -> String,
-                       _ regexString: String, _ message: String? = nil,
+    func assertMatches(_ block: @autoclosure () -> String, _ regexString: String, _ message: String? = nil,
                        fileName: String = #file, lineNumber: UInt = #line) {
         RLMAssertMatches(self, block, regexString, message, fileName, lineNumber)
     }
@@ -237,14 +216,3 @@ class TestCase: XCTestCase {
         return directory.appendingPathComponent(fileName, isDirectory: false)
     }
 }
-
-#if !swift(>=3.2)
-func XCTAssertEqual<F: FloatingPoint>(_ expression1: F, _ expression2: F, accuracy: F,
-                                      file: StaticString = #file, line: UInt = #line) {
-    XCTAssertEqualWithAccuracy(expression1, expression2, accuracy: accuracy, file: file, line: line)
-}
-func XCTAssertNotEqual<F: FloatingPoint>(_ expression1: F, _ expression2: F, accuracy: F,
-                                         file: StaticString = #file, line: UInt = #line) {
-    XCTAssertNotEqualWithAccuracy(expression1, expression2, accuracy, file: file, line: line)
-}
-#endif

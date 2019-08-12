@@ -36,10 +36,11 @@ final class MultiThreadAccessTests: XCTestCase {
             return
         }
 
+        let expectation = self.expectation(description: "スレッド間でオブジェクトを受け渡すテスト")
         // サブスレッドに受け渡す
         let folderRef = ThreadSafeReference(to: theFolder)
 
-        DispatchQueue.global().async {
+        DispatchQueue(label: "background").async {
             // サブスレッド
 
             autoreleasepool {
@@ -64,7 +65,10 @@ final class MultiThreadAccessTests: XCTestCase {
                     return
                 }
                 XCTAssertEqual(updatedFolder.title, "サブスレッドテスト")
+
+                expectation.fulfill()
             }
         }
+        self.waitForExpectations(timeout: 3.0, handler: nil)
     }
 }

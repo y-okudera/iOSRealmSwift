@@ -46,6 +46,7 @@ final class RealmMigrator {
 
         // スキーマバージョンを設定（デフォルト値は0）
         configuration.schemaVersion = newSchemaVersion
+        configuration.encryptionKey = RealmInitializer.encryptionKey()
 
         let realmInitializer = RealmInitializer(configuration: configuration)
         let realm = realmInitializer.initializeRealm()

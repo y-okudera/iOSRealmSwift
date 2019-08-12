@@ -1,7 +1,8 @@
-swiftVersions = ['3.1', '3.2', '3.2.2', '3.2.3', '3.3', '4.0', '4.0.2', '4.0.3', '4.1', '4.1.2']
+xcodeVersions = ['9.4', '10.0', '10.1', '10.2.1', '10.3']
 platforms = ['osx', 'ios', 'watchos', 'tvos']
 platformNames = ['osx': 'macOS', 'ios': 'iOS', 'watchos': 'watchOS', 'tvos': 'tvOS']
-carthageXcodeVersion = '9.4'
+carthageXcodeVersion = '10.3'
+docsSwiftVersion = '5.0.1'
 
 def installationTest(platform, test, language) {
   return {
@@ -23,6 +24,7 @@ def installationTest(platform, test, language) {
         find . -name 'realm-${language}-*' -print0 | xargs -J% mv % realm-${language}-latest
       fi
 
+      export REALM_XCODE_VERSION=${carthageXcodeVersion}
       ./build.sh test-${platform}-${language}-${test}
       """
     }
@@ -70,7 +72,7 @@ def doBuild() {
           deleteDir()
           unstash 'source'
           sh """
-          export REALM_SWIFT_VERSION=${swiftVersions.last()}
+          export REALM_SWIFT_VERSION=${docsSwiftVersion}
           ./scripts/reset-simulators.sh
           ./build.sh docs
           cd docs
@@ -123,16 +125,16 @@ def doBuild() {
     for (def p in platforms) {
       def platform = p
       def platformName = platformNames[platform]
-      for (def v in swiftVersions) {
-        def swiftVersion = v
-        parallelBuilds["${platformName} Swift ${swiftVersion}"] = {
+      for (def v in xcodeVersions) {
+        def xcodeVersion = v
+        parallelBuilds["${platformName} Swift ${xcodeVersion}"] = {
           node('osx') {
             deleteDir()
             unstash 'source'
-            sh "XCMODE=xcpretty ./build.sh package-${platform}-swift-${swiftVersion}"
+            sh "XCMODE=xcpretty ./build.sh package-${platform}-swift-${xcodeVersion}"
             dir("build/${platform}") {
-              stash includes: "realm-swift-framework-${platform}-swift-${swiftVersion}.zip",
-                    name: "${platform}-swift-${swiftVersion}"
+              stash includes: "realm-swift-framework-${platform}-swift-${xcodeVersion}.zip",
+                    name: "${platform}-swift-${xcodeVersion}"
             }
           }
         }
@@ -166,8 +168,8 @@ def doBuild() {
           deleteDir()
 
           for (def platform in platforms) {
-            for (def swiftVersion in swiftVersions) {
-              unstash "${platform}-swift-${swiftVersion}"
+            for (def xcodeVersion in xcodeVersions) {
+              unstash "${platform}-swift-${xcodeVersion}"
             }
           }
 

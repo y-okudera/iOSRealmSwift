@@ -82,7 +82,7 @@ static NSString *nodePath() {
     const NSInteger fakeDataSize = 1000000;
     HugeSyncObject *object = [[self alloc] init];
     char fakeData[fakeDataSize];
-    memset(fakeData, sizeof(fakeData), 16);
+    memset(fakeData, 16, sizeof(fakeData));
     object.dataProp = [NSData dataWithBytes:fakeData length:sizeof(fakeData)];
     return object;
 }
@@ -131,9 +131,19 @@ static NSURL *syncDirectoryForChildProcess() {
     // Clean up any old state from the server
     [[NSTask launchedTaskWithLaunchPath:@"/usr/bin/pkill"
                               arguments:@[@"-f", @"node.*test-ros-server.js"]] waitUntilExit];
-    [NSFileManager.defaultManager removeItemAtURL:self.serverDataRoot error:nil];
+    NSError *error;
+    [NSFileManager.defaultManager removeItemAtURL:self.serverDataRoot error:&error];
+    if (error && error.code != NSFileNoSuchFileError) {
+        NSLog(@"Failed to delete old test state: %@", error);
+        abort();
+    }
+    error = nil;
     [NSFileManager.defaultManager createDirectoryAtURL:self.serverDataRoot
-                           withIntermediateDirectories:YES attributes:nil error:nil];
+                           withIntermediateDirectories:YES attributes:nil error:&error];
+    if (error) {
+        NSLog(@"Failed to create scratch directory: %@", error);
+        abort();
+    }
 
     // Install ROS if it isn't already present
     [self downloadObjectServer];
@@ -242,6 +252,10 @@ static NSURL *syncDirectoryForChildProcess() {
 
 + (NSURL *)authServerURL {
     return [NSURL URLWithString:@"http://127.0.0.1:9080"];
+}
+
++ (NSURL *)secureAuthServerURL {
+    return [NSURL URLWithString:@"https://localhost:9443"];
 }
 
 + (RLMSyncCredentials *)basicCredentialsWithName:(NSString *)name register:(BOOL)shouldRegister {
@@ -454,7 +468,7 @@ static NSURL *syncDirectoryForChildProcess() {
         XCTFail(@"Upload waiter did not queue; session was invalid or errored out.");
         return;
     }
-    [self waitForExpectations:@[ex] timeout:2.0];
+    [self waitForExpectations:@[ex] timeout:20.0];
     if (error)
         *error = completionError;
 }
@@ -472,7 +486,7 @@ static NSURL *syncDirectoryForChildProcess() {
         XCTFail(@"Download waiter did not queue; session was invalid or errored out.");
         return;
     }
-    [self waitForExpectations:@[ex] timeout:2.0];
+    [self waitForExpectations:@[ex] timeout:20.0];
     if (error)
         *error = completionError;
 }
@@ -512,6 +526,7 @@ static NSURL *syncDirectoryForChildProcess() {
                            withIntermediateDirectories:YES attributes:nil error:&error];
     s_managerForTest = [[RLMSyncManager alloc] initWithCustomRootDirectory:clientDataRoot];
     [RLMSyncManager sharedManager].logLevel = RLMSyncLogLevelOff;
+    [RLMSyncManager sharedManager].userAgent = self.name;
 }
 
 - (void)tearDown {

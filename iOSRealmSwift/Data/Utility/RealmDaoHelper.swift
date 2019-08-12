@@ -13,7 +13,7 @@ final class RealmDaoHelper <T: RealmSwift.Object> {
 
     var realm: Realm
 
-    init(service: RealmInitializer = RealmInitializer()) {
+    init(service: RealmInitializeService = RealmInitializer()) {
         self.realm = service.initializeRealm()
     }
 
@@ -22,7 +22,7 @@ final class RealmDaoHelper <T: RealmSwift.Object> {
     /// 新規主キー発行
     func newId() -> Int? {
         guard let key = T.primaryKey() else {
-            // primaryKey未設定
+            print("primaryKey未設定")
             return nil
         }
         return (realm.objects(T.self).max(ofProperty: key) as Int? ?? 0) + 1
@@ -36,8 +36,8 @@ final class RealmDaoHelper <T: RealmSwift.Object> {
             try realm.write {
                 realm.add(d)
             }
-        } catch let error as NSError {
-            print("error: \(error.localizedDescription)")
+        } catch {
+            print("Data registration error: \(error)")
         }
     }
 
@@ -48,11 +48,11 @@ final class RealmDaoHelper <T: RealmSwift.Object> {
         do {
             try realm.write {
                 block?()
-                realm.add(d, update: true)
+                realm.add(d, update: .modified)
             }
             return true
-        } catch let error as NSError {
-            print("error: \(error.localizedDescription)")
+        } catch {
+            print("Data update error: \(error)")
         }
         return false
     }
@@ -67,8 +67,8 @@ final class RealmDaoHelper <T: RealmSwift.Object> {
                 realm.delete(objs)
             }
             return true
-        } catch let error as NSError {
-            print("error: \(error.localizedDescription)")
+        } catch {
+            print("All data delete error: \(error)")
         }
         return false
     }
@@ -80,8 +80,8 @@ final class RealmDaoHelper <T: RealmSwift.Object> {
                 realm.delete(d)
             }
             return true
-        } catch let error as NSError {
-            print("error: \(error.localizedDescription)")
+        } catch {
+            print("Data delete error: \(error)")
         }
         return false
     }

@@ -33,7 +33,7 @@ final class FolderDaoTests: XCTestCase {
     /// folderテーブルにレコードを追加するテスト
     func testAdd() {
 
-        let folderDao = FolderDao(dao: folderDaoHelper)
+        let folderDao = FolderDao(daoHelper: folderDaoHelper, taskDaoHelper: taskDaoHelper)
 
         // レコード数が0件であることをテスト
         XCTAssertEqual(folderDao.findAllSortedByLastUpdatedDESC().count, 0)
@@ -56,7 +56,7 @@ final class FolderDaoTests: XCTestCase {
         // folderテーブルにレコードを追加する
         testAdd()
 
-        let folderDao = FolderDao(dao: folderDaoHelper)
+        let folderDao = FolderDao(daoHelper: folderDaoHelper, taskDaoHelper: taskDaoHelper)
         // レコードを取得し、更新する
         if let selectedRecord = folderDao.findById(folderId: 1) {
 
@@ -77,7 +77,7 @@ final class FolderDaoTests: XCTestCase {
     /// folderテーブルのレコードを削除するテスト
     func testDelete() {
 
-        let folderDao = FolderDao(dao: folderDaoHelper)
+        let folderDao = FolderDao(daoHelper: folderDaoHelper, taskDaoHelper: taskDaoHelper)
 
         // レコードを追加
         addFolder(title: "フォルダA", date: "2018-08-19 11:22:33".toDate())
@@ -105,7 +105,7 @@ final class FolderDaoTests: XCTestCase {
     /// folderテーブルのレコードをlastUpdatedが近い順で全件取得するテスト
     func testFindAllSortedByLastUpdatedDESC() {
 
-        let folderDao = FolderDao(dao: folderDaoHelper)
+        let folderDao = FolderDao(daoHelper: folderDaoHelper, taskDaoHelper: taskDaoHelper)
 
         // レコードを追加
         addFolder(title: "フォルダA", date: "2018-08-19 11:22:33".toDate())
@@ -130,7 +130,7 @@ final class FolderDaoTests: XCTestCase {
             TaskEntity(title: "タスク2", limitDate: "2018-08-25 15:00:00".toDate())
         ]
 
-        let folderDao = FolderDao(dao: folderDaoHelper)
+        let folderDao = FolderDao(daoHelper: folderDaoHelper, taskDaoHelper: taskDaoHelper)
         let taskDao = TaskDao(dao: taskDaoHelper)
 
         // フォルダを1件追加
@@ -174,7 +174,7 @@ final class FolderDaoTests: XCTestCase {
             TaskEntity(title: "タスク2", limitDate: "2018-08-25 15:00:00".toDate())
         ]
 
-        let folderDao = FolderDao(dao: folderDaoHelper)
+        let folderDao = FolderDao(daoHelper: folderDaoHelper, taskDaoHelper: taskDaoHelper)
         let taskDao = TaskDao(dao: taskDaoHelper)
 
         // フォルダを1件追加
@@ -205,7 +205,7 @@ final class FolderDaoTests: XCTestCase {
     /// レコードを追加する
     private func addFolder(title: String = "テストフォルダA", date: Date?) {
 
-        let folderDao = FolderDao(dao: folderDaoHelper)
+        let folderDao = FolderDao(daoHelper: folderDaoHelper, taskDaoHelper: taskDaoHelper)
         let newFolder = FolderEntity(title: title, lastUpdated: date)
         folderDao.add(entity: newFolder)
     }
@@ -213,7 +213,7 @@ final class FolderDaoTests: XCTestCase {
     /// フォルダテーブルのレコードを取得し、検証する
     private func verifyFolderRecord(folderId: Int, expectedValueOfTitle: String, expectedValueOfDate: Date?) {
 
-        let folderDao = FolderDao(dao: folderDaoHelper)
+        let folderDao = FolderDao(daoHelper: folderDaoHelper, taskDaoHelper: taskDaoHelper)
         if let selectedRecord = folderDao.findById(folderId: folderId) {
             XCTAssertEqual(selectedRecord.folderId, folderId)
             XCTAssertEqual(selectedRecord.title, expectedValueOfTitle)

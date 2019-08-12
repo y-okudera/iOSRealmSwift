@@ -1,5 +1,8 @@
 const ROS = require('realm-object-server');
 const fs = require('fs');
+const http = require('http');
+const httpProxy = require('http-proxy');
+const os = require('os');
 const path = require('path');
 
 // Bypass the mandatory email prompt.
@@ -15,6 +18,16 @@ process.env.ROS_SUPERAGENT_RETRY_DELAY = '0';
 
 // Enable timestamps in the logs
 process.env.ROS_LOG_TIMESTAMP = '1';
+
+if (!process.env.SYNC_WORKER_FEATURE_TOKEN) {
+    try {
+        require(os.homedir() + '/.ros-feature-token.js');
+    }
+    catch (e) {
+        console.error('ROS feature token not found. Running Object Server tests requires setting the SYNC_WORKER_FEATURE_TOKEN environment variable.');
+        process.exit(1);
+    }
+}
 
 // A "email handler" which actually just writes the tokens to files that the
 // tests can read
@@ -35,6 +48,44 @@ class PasswordEmailHandler {
     }
 }
 
+// A simple proxy server that runs in front of ROS and validates custom headers
+class HeaderValidationProxy {
+    constructor(listenPort, targetPort) {
+        this.proxy = httpProxy.createProxyServer({target: `http://127.0.0.1:${targetPort}`, ws: true});
+        this.proxy.on('error', e => {
+            console.log('proxy error', e);
+        });
+        this.server = http.createServer((req, res) => {
+            if (this.validate(req)) {
+                this.proxy.web(req, res);
+            }
+            else {
+                res.writeHead(400);
+                res.end('Missing X-Allow-Connection header');
+            }
+        });
+        this.server.on('upgrade', (req, socket, head) => {
+            if (this.validate(req)) {
+                this.proxy.ws(req, socket, head);
+            }
+            else {
+                socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+            }
+        });
+        this.server.listen(listenPort);
+    }
+
+    stop() {
+        this.server.close();
+        this.proxy.close();
+    }
+
+    validate(req) {
+        return !!req.headers['x-allow-connection'];
+    }
+}
+
+
 const server = new ROS.BasicServer();
 server.start({
     // The desired logging threshold. Can be one of: all, trace, debug, detail, info, warn, error, fatal, off)
@@ -45,6 +96,13 @@ server.start({
 
     address: '0.0.0.0',
     port: 9080,
+    httpsPort: 9443,
+
+    https: true,
+    httpsKeyPath: __dirname + '/certificates/localhost-cert-key.pem',
+    httpsCertChainPath: __dirname + '/certificates/localhost-cert.pem',
+    httpsForInternalComponents: false,
+
     dataPath: process.argv[2],
     authProviders: [
         new ROS.auth.DebugAuthProvider(),
@@ -60,3 +118,4 @@ server.start({
 }).catch(err => {
     console.error(`Error starting Realm Object Server: ${err.message}`)
 });
+new HeaderValidationProxy(9081, 9080);
