@@ -18,45 +18,17 @@ final class RealmMigratorTests: XCTestCase {
         super.setUp()
         UTFileManager.removeUTDirectory()
     }
-
-    /// スキーマバージョン0から1へのマイグレーションをテスト
-    func testSchemaVersion0To1() {
-
-        setTestRecords(defaultSchemaVersion: 0)
-
-        let service = RealmInitializerForTest.realmInitializeService()
-        RealmMigrator.migrate(newSchemaVersion: 1, configuration: service.configuration)
-
-        let realm = try! Realm(configuration: service.configuration!)
-        XCTAssertEqual(realm.objects(TaskEntity.self).count, 3)
-        XCTAssertEqual(realm.objects(FolderEntity.self).count, 1)
-        XCTAssertEqual(realm.configuration.schemaVersion, 1)
-    }
-
+    
     /// スキーマバージョン0から2へのマイグレーションをテスト
     func testSchemaVersion0To2() {
 
         setTestRecords(defaultSchemaVersion: 0)
 
-        let service = RealmInitializerForTest.realmInitializeService()
-        RealmMigrator.migrate(newSchemaVersion: 2, configuration: service.configuration)
+        // マイグレーションを実行
+        RealmMigrator.migrate()
 
-        let realm = try! Realm(configuration: service.configuration!)
-        XCTAssertEqual(realm.objects(TaskEntity.self).count, 3)
-        XCTAssertEqual(realm.objects(FolderEntity.self).count, 1)
-        XCTAssertEqual(realm.configuration.schemaVersion, 2)
-    }
-
-    /// スキーマバージョン1から2へのマイグレーションをテスト
-    func testSchemaVersion1To2() {
-
-        setTestRecords(defaultSchemaVersion: 1)
-
-        let service = RealmInitializerForTest.realmInitializeService()
-        RealmMigrator.migrate(newSchemaVersion: 2, configuration: service.configuration)
-
-        let realm = try! Realm(configuration: service.configuration!)
-        XCTAssertEqual(realm.objects(TaskEntity.self).count, 3)
+        let realm = try! Realm(configuration: RealmInitializerForTest.realmInitializeService().configuration!)
+        XCTAssertEqual(realm.objects(TaskEntity.self).count, 1)
         XCTAssertEqual(realm.objects(FolderEntity.self).count, 2)
         XCTAssertEqual(realm.configuration.schemaVersion, 2)
     }
@@ -88,23 +60,16 @@ final class RealmMigratorTests: XCTestCase {
         configuration.schemaVersion = defaultSchemaVersion
         let realm = try! Realm(configuration: configuration)
 
-        let task1 = TaskEntity(taskId: 1, title: "タスク1", limitDate: Date(), isDone: false)
-        let task2 = TaskEntity(taskId: 2, title: "タスク2", limitDate: Date(), isDone: false)
-        let task3 = TaskEntity(taskId: 3, title: "タスク3", limitDate: Date(), isDone: false)
-        let folder1 = FolderEntity(folderId: 1, title: "フォルダ1", lastUpdated: Date(), taskList: [task1])
-        let folder2 = FolderEntity(folderId: 2, title: "フォルダ2", lastUpdated: Date(), taskList: [])
+        let task1 = TaskEntity(taskId: 1, title: "タスク1", limitDate: nil)
+        let task2 = TaskEntity(taskId: 2, title: "タスク2", limitDate: Date(timeInterval: TimeInterval(60 * 60 * 24 * -7), since: Date()))
+        let task3 = TaskEntity(taskId: 3, title: "タスク3", limitDate: Date(timeInterval: TimeInterval(60 * 60 * 24 * 7), since: Date()))
+        let folder = FolderEntity(folderId: 1, title: "データあり", lastUpdated: Date(), taskList: [task1, task2, task3])
+        let emptyFolder = FolderEntity(folderId: 2, title: "データなし", lastUpdated: Date())
 
         do {
             try realm.write {
-                realm.add(task1)
-                realm.add(task2)
-                realm.add(task3)
-                realm.add(folder1)
-                realm.add(folder2)
-                if let theFolder = realm.object(ofType: FolderEntity.self, forPrimaryKey: 1 as AnyObject) {
-                    theFolder.taskList.append(task1)
-                    realm.add(theFolder)
-                }
+                realm.add(folder)
+                realm.add(emptyFolder)
             }
         } catch {
             XCTFail(error.localizedDescription)

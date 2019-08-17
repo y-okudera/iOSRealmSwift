@@ -11,10 +11,10 @@ import RealmSwift
 
 final class TaskDao {
 
-    private let dao: RealmDaoHelper<TaskEntity>
+    let daoHelper: RealmDaoHelper<TaskEntity>
 
     init(dao: RealmDaoHelper<TaskEntity> = RealmDaoHelper<TaskEntity>()) {
-        self.dao = dao
+        self.daoHelper = dao
     }
 
     // MARK: - Add
@@ -22,8 +22,8 @@ final class TaskDao {
     @discardableResult
     func add(entity: TaskEntity) -> Int {
         let object = TaskEntity(value: entity)
-        object.taskId = dao.newId()!
-        dao.add(d: object)
+        object.taskId = daoHelper.newId()!
+        daoHelper.add(d: object)
         return object.taskId
     }
 
@@ -31,26 +31,26 @@ final class TaskDao {
 
     @discardableResult
     func update(entity: TaskEntity) -> Bool {
-        if dao.findById(id: entity.taskId as AnyObject) == nil {
+        if daoHelper.findById(id: entity.taskId as AnyObject) == nil {
             return false
         }
-        return dao.update(d: entity)
+        return daoHelper.update(d: entity)
     }
 
     // MARK: - Delete
 
     @discardableResult
     func delete(taskId: Int) -> Bool {
-        guard let object = dao.findById(id: taskId as AnyObject) else {
+        guard let object = daoHelper.findById(id: taskId as AnyObject) else {
             return false
         }
-        return dao.delete(d: object)
+        return daoHelper.delete(d: object)
     }
 
     // MARK: - Find
 
     func findById(taskId: Int) -> TaskEntity? {
-        guard let object = dao.findById(id: taskId as AnyObject) else {
+        guard let object = daoHelper.findById(id: taskId as AnyObject) else {
             return nil
         }
         return TaskEntity(value: object)

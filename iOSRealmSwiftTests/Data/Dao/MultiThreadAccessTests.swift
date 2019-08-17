@@ -40,7 +40,7 @@ final class MultiThreadAccessTests: XCTestCase {
         // サブスレッドに受け渡す
         let folderRef = ThreadSafeReference(to: theFolder)
 
-        DispatchQueue(label: "background").async {
+        DispatchQueue(label: Bundle.main.bundleIdentifier! + ".realm").async {
             // サブスレッド
 
             autoreleasepool {

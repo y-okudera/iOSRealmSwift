@@ -16,8 +16,8 @@ final class SplashViewController: UIViewController {
         super.viewDidAppear(animated)
 
         // Realm migration
-        RealmMigrator.migrate(newSchemaVersion: 2)
-        
+        RealmMigrator.migrate()
+
         guard let vc = UIStoryboard.viewController(
             storyboardName: "Main",
             identifier: "ViewController") as? ViewController else {

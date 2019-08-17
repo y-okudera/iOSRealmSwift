@@ -6,65 +6,65 @@
 //  Copyright © 2018年 YukiOkudera. All rights reserved.
 //
 
+import Foundation
 import RealmSwift
 
 final class RealmMigrator {
 
-    /// Realmのマイグレーション
-    ///
-    /// リリース時にマイグレーションが必要な場合は、newSchemaVersionをインクリメントする
-    ///
-    /// - Parameters:
-    ///   - newSchemaVersion: 新しいスキーマバージョン
-    ///   - configuration: Realmコンフィグレーション
-    static func migrate(newSchemaVersion: UInt64, configuration: Realm.Configuration? = nil) {
+    // リリース時にマイグレーションが必要な場合は、versionをインクリメントする
+    static let version: UInt64 = 2
 
-        var configuration = configuration ?? Realm.Configuration()
+    /// Realmのマイグレーションオブジェクトを取得する
+    static func migrationBlock() -> MigrationBlock? {
 
-        /// SchemaVersion1更新フラグ
-        var needsMigrationToV1 = false
+        return { migration, oldSchemaVersion in
 
-        configuration.migrationBlock = { migration, oldSchemaVersion in
             if oldSchemaVersion < 1 {
+
+                migration.deleteData(forType: TaskEntity.className())
+
+                // データベース内にある全てのFolderEntityモデルを列挙
+                migration.enumerateObjects(ofType: FolderEntity.className(), { oldObject, newObject in
+
+                    guard let oldObject = oldObject, let newObject = newObject else {
+                        return
+                    }
+
+                    // 旧バージョンのフォルダに紐づくタスクを取得して、limitDateが設定されていて、且つ超過していないデータだけ新バージョンに移行する
+                    let oldTaskList = oldObject["taskList"] as! List<MigrationObject>
+                    let taskList = newObject["taskList"] as! List<MigrationObject>
+
+                    for oldTask in oldTaskList {
+                        let newTaskDic = oldTask.dictionaryWithValues(forKeys: ["taskId", "title", "limitDate", "isDone"])
+
+                        if let limitDate = newTaskDic["limitDate"] as? Date {
+                            if limitDate > Date() {
+                                let newTaskList = migration.create(TaskEntity.className(), value: newTaskDic)
+                                taskList.append(newTaskList)
+                            }
+                        }
+                    }
+                })
+
                 // データベース内にある全てのTaskEntityモデルを列挙
                 migration.enumerateObjects(ofType: TaskEntity.className(), { oldObject, newObject in
-
                     // 古いオブジェクトからtitleを取得
                     let oldTitle = oldObject!["title"] as! String
-
                     // 新しいオブジェクトのtitleに新しい値を設定
                     newObject?["title"] = "[UPDATED]\(oldTitle)"
                 })
-
-                needsMigrationToV1 = true
             }
 
             if oldSchemaVersion < 2 {
                 // 何もしないマイグレーション
             }
         }
+    }
+}
 
-        // スキーマバージョンを設定（デフォルト値は0）
-        configuration.schemaVersion = newSchemaVersion
-        configuration.encryptionKey = RealmInitializer.encryptionKey()
-
-        let realmInitializer = RealmInitializer(configuration: configuration)
-        let realm = realmInitializer.initializeRealm()
-        print("Realm SchemaVersion: \(realm.configuration.schemaVersion)")
-
-        // migrationブロックではListTypeのマイグレーションができないため、通常のRealmAPIを使用してマイグレーションを実行する
-        if needsMigrationToV1 {
-            // 全てのFolderEntityのうち、taskListが0件のレコードを削除する
-            let allFolders = realm.objects(FolderEntity.self)
-            do {
-                try realm.write {
-                    for folder in allFolders where folder.taskList.count == 0 {
-                        realm.delete(folder)
-                    }
-                }
-            } catch {
-                print(error)
-            }
-        }
+extension RealmMigrator {
+    static func migrate(service: RealmInitializeService = RealmInitializer()) {
+        let realm = service.initializeRealm()
+        print("schemaVersion", realm.configuration.schemaVersion)
     }
 }
